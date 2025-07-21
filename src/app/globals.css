@@ -82,6 +82,12 @@ footer {
   list-style-type: disc;
 }
 
+@media (max-width: 768px) {
+  .page-about h1 {
+    font-size: 1.5rem;
+  }
+}
+
 .fade-in {
   animation: fadeIn 0.6s ease-in forwards;
   opacity: 0;
