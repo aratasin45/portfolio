@@ -1,26 +1,136 @@
-@import "tailwindcss";
+/* globals.css に追加 */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* フッターを画面下に固定するための土台 */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ページ全体を縦方向に伸ばす */
+body > main {
+  flex: 1;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.page-home {
+  padding: 2rem;
+  padding-top: 5rem; /* ← 上に余白を追加 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-home h1, .page-home h2, .page-home p {
+  max-width: 800px;
+  text-align: left;
+  margin: 1rem auto;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+footer {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.page-about {
+  padding: 2rem;
+  padding-top: 5rem; /* ← 上に余白を追加 */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-about h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-about h2 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+}
+
+.page-about p, .page-about li {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.page-about ul {
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* フッター以外の部分が縦に広がる */
+body > main {
+  flex: 1;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff; /* 背景色を指定しないと後ろが透ける */
+  z-index: 1000; /* 他の要素より上に表示 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 下に影 */
+}
+
+.page-projects {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.project {
+  margin-bottom: 4rem;
+}
+
+.project h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.project-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.project ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.project a {
+  color: #0070f3;
+  text-decoration: underline;
+}
+
+.project a:hover {
+  text-decoration: none;
 }

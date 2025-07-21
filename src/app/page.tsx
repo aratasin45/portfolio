@@ -1,103 +1,44 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import { JSX, useEffect, useState } from 'react';
+
+
+const lines: JSX.Element[] = [
+  <h1 key="1">ようこそ、佐藤新のポートフォリオへ</h1>,
+  <p key="2">2025年6月2日で30歳を迎えました。</p>,
+  <p key="3">現在は自動車リサイクル業の営業職として働いており、外国語を活用しながらお客様へ自動車エンジンやボディパーツを販売しています。</p>,
+  <p key="4">入社3年目には若手社員表彰で1位を獲得しましたが、私が担当していた乗用車ビジネスは工場に120人が関わる部門であり、個人の実績だけでは会社全体の利益に貢献できないというジレンマがありました。</p>,
+  <p key="5">そんな中、経常利益1億円を目指す乗用車プロジェクトのメンバーに選ばれたことが、私のキャリアの転機となりました。</p>,
+  <p key="6">最初はスプレッドシートの関数でパーツ振り分け表を作成していましたが、処理速度が遅く、月末には固まってしまう問題が発生しました。</p>,
+  <p key="7">この課題を解決するために、Google Apps Script（GAS）を使って独学でプログラミングを学び、パーツ入札システムを開発・導入しました。</p>,
+  <p key="8">現在もこのGAS製アプリは運用されており、分析機能や業務効率の向上に貢献しています。</p>,
+  <p key="9">さらに、仕入れ効率の改善のため、TypeScriptとNext.jsを使ってWebアプリケーションを自ら設計・開発しました。</p>,
+  <p key="10">このアプリでは要件定義から開発、保守運用まで一人で担当し、実務に活かされています。</p>,
+  <p key="11">ITの力で業務改善ができる実感を得たことをきっかけに、転職を意識するようになりました。</p>,
+  <p key="12">今後はIT業界で、自分のスキルをさらに磨き、お客様に喜んでもらえるサービスを提供していきたいと考えています。</p>,
+];
+
+export default function HomePage() {
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  useEffect(() => {
+    if (visibleCount < lines.length) {
+      const timer = setTimeout(() => {
+        setVisibleCount((prev) => prev + 1);
+      }, 1000); // 0.6秒ごとに1行表示
+
+      return () => clearTimeout(timer); // クリーンアップ
+    }
+  }, [visibleCount]);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+    <>
+      
+      <main className="page-home">
+        {lines.slice(0, visibleCount)}
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      
+      
+    </>
   );
 }
